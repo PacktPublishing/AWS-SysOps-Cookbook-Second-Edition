@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: "2010-09-09" 
+Description: Demonstrate CloudFormation Mappings
+Parameters:
+  OperatingSystem: 
+    Description: The operating system to run for the instance
+    Type: String 
+    Default: Linux 
+    AllowedValues: 
+      - Linux 
+      - Windows 
+    ConstraintDescription: Must be Linux or Windows
+Mappings: 
+  RegionMap: 
+    us-east-1: 
+      Linux: ami-035be7bafff33b6b6
+      Windows: ami-0df43b4f8a07c7c14
+    us-west-1: 
+      Linux: ami-0799ad445b5727125 
+      Windows: ami-06b499097655a3ab5
+Resources:
+  MyEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: 
+        !FindInMap 
+          - RegionMap
+          - !Ref "AWS::Region"
+          - !Ref OperatingSystem 

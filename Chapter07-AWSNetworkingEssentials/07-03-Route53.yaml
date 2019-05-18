@@ -1,0 +1,9 @@
+Parameters: 
+  DomainName: 
+    Description: Your domain name (example.org) 
+    Type: String
+Resources: 
+  DNSHostedZone:  
+    Type: AWS::Route53::HostedZone 
+    Properties: 
+      Name: !Ref DomainName

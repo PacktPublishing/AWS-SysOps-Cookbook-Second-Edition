@@ -1,0 +1,15 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: Deploys required roles for Stack Sets
+Resources:
+    AWSCloudFormationStackSetAdministrationRole:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/cloudformation-stackset-sample-templates-us-east-1/AWSCloudFormationStackSetAdministrationRole.yml 
+            TimeoutInMinutes: '3'
+    AWSCloudFormationStackSetExecutionRole:
+        Type: AWS::CloudFormation::Stack
+        Properties:
+            TemplateURL: https://s3.amazonaws.com/cloudformation-stackset-sample-templates-us-east-1/AWSCloudFormationStackSetExecutionRole.yml 
+            TimeoutInMinutes: '3'
+            Parameters:
+                AdministratorAccountId : !Ref "AWS::AccountId"
