@@ -1,0 +1,21 @@
+Resources: 
+  ApexBucket: 
+    Type: AWS::S3::Bucket 
+    Properties: 
+      BucketName: 
+        Ref: DomainName 
+      AccessControl: PublicRead 
+      WebsiteConfiguration: 
+        IndexDocument: index.html 
+        ErrorDocument: error.html 
+  WWWBucket: 
+    Type: AWS::S3::Bucket 
+    Properties: 
+      BucketName: 
+        Fn::Join: [ ., [ www, Ref: DomainName ] ]
+      AccessControl: BucketOwnerFullControl 
+      WebsiteConfiguration: 
+        RedirectAllRequestsTo: 
+          HostName: 
+            Ref: ApexBucket
+  
