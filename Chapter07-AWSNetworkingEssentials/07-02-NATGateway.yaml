@@ -16,7 +16,7 @@ Resources:
     Type: AWS::EC2::NatGateway 
     Properties: 
       AllocationId: !GetAtt EIP.AllocationId 
-      SubnetId: !Ref 
+      SubnetId: !Ref PublicSubnetId
   Route: 
     Type: AWS::EC2::Route 
     Properties: 
