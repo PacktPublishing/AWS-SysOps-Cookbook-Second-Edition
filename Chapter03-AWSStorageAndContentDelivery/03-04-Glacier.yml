@@ -1,0 +1,23 @@
+Resources:
+  MyCloudFormationBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      LifecycleConfiguration:
+      Rules:
+        - Id: GlacierRule
+          Prefix: glacier
+          Status: Enabled
+          Transitions:
+            - TransitionInDays: '90'
+              StorageClass: Glacier
+      Tags:
+        -
+          Key: "COST_CENTER"
+          Value: "Accounting"
+        -
+          Key: "PROJECT_ID"
+          Value: "FY2019"
+Outputs:
+  BucketName:
+    Value: !Ref MyCloudFormationBucket
+    Description: The bucket name
