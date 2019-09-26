@@ -1,4 +1,4 @@
-# AWS-Administration-Cookbook-SecondEdition
- AWS Administration Cookbook, published by Packt
+# AWS-SysOps-Cookbook-SecondEdition
+ AWS SysOps Cookbook, published by Packt
 
 
